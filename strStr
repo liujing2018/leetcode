@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        
+        if (haystack.empty() && !needle.empty()) return -1;
+        if (haystack.empty()) return 0;
+        if (needle.empty()) return 0;
+        if (haystack == needle) return 0;
+    for(int i = 0; haystack[i] != '\0'; i++)  
+    {  
+        int tem = i; //tem保留主串中的起始判断下标位置   
+        int j = 0;  
+        while(haystack[i++] == needle[j++])  
+        {  
+            if(needle[j] == '\0')  
+            {  
+                return tem;  
+            }  
+        }  
+        i = tem;  
+    }  
+  
+    return -1;  
+        
+    }
+};
