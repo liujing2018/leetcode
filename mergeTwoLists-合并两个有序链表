@@ -1,0 +1,75 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+             ListNode* ret  = NULL;
+     ListNode* lt1 = l1; 
+     ListNode* lt2 = l2; 
+     ListNode* tmp = NULL;
+        if(lt1 == NULL)
+        {
+            return lt2; 
+        }else if (lt2 == NULL){
+            return lt1;
+        }
+     while(lt1 != NULL || lt2 != NULL)
+     {
+         if(lt1 == NULL && lt2 != NULL)
+        {
+            tmp->next = lt2;
+             return ret;
+        }else if (lt1 != NULL && lt2 == NULL){
+             tmp->next = lt1;
+            return ret;
+        }
+ 
+         if (lt1->val < lt2->val) {
+             if (ret == NULL)
+             {
+                 ret = new ListNode(lt1->val);
+                 tmp = ret;
+             }else {
+                 tmp->next = new ListNode(lt1->val);
+                 tmp = tmp->next;
+             }
+             l1 = (l1 == NULL)?l1 : l1->next;
+         } else if (lt1->val == lt2->val)
+         {
+             if (ret == NULL)
+             {
+                 ret = new ListNode(lt1->val);
+                 ret->next = new ListNode(lt2->val);
+                 tmp = ret->next;
+             }else {
+                 tmp->next = new ListNode(lt1->val);
+                 tmp = tmp->next;
+                 tmp->next = new ListNode(lt2->val);
+                 tmp = tmp->next;
+             }
+             l1 = (l1 == NULL)?NULL : l1->next;
+             l2 = (l2 == NULL)?NULL : l2->next;
+         }else {
+             if (ret == NULL)
+             {
+                 ret = new ListNode(lt2->val);
+                 tmp = ret;
+             }else {
+                 tmp->next = new ListNode(lt2->val);
+                 tmp = tmp->next;
+             }
+             l2 = (l2 == NULL)?l2 : l2->next;
+         }
+         lt1 = l1; 
+         lt2 = l2; 
+     }
+     return ret;
+
+    }
+};
