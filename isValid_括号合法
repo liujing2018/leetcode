@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValid(string s) {
+      stack <char>stk; 
+        map<char,char> tag;
+        tag[')'] = '(';
+        tag[']'] = '[';  
+        tag['}'] = '{'; 
+        int i = 0;
+        bool ret = false;
+      for(i=0; i < s.length(); i++)
+      {
+          if (stk.empty()){
+              stk.push(s[i]);
+          }else if (stk.top() != tag[s[i]])
+          {
+              stk.push(s[i]);
+          }else 
+          {
+              stk.pop();
+          }
+      }
+      if (stk.empty()) ret = true;
+        return ret;
+    }
+};
